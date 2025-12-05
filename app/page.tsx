@@ -15,6 +15,8 @@ export default function Home() {
   const [result, setResult] = useState<ProcessingResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const MAX_FILE_SIZE = 4.5 * 1024 * 1024; // 4.5MB Vercel limit
+
   const getFileType = (file: File): 'image' | 'video' | 'audio' => {
     if (file.type.startsWith('image/')) return 'image';
     if (file.type.startsWith('video/')) return 'video';
@@ -74,7 +76,7 @@ export default function Home() {
             Media<span className="text-gray-900">Compressor</span>
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 font-medium">
-            Professional-grade compression and enhancement for your media files.
+            Professional-grade compression and enhancement for your media files. by Nadeem salamni.
           </p>
         </div>
 
