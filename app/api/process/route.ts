@@ -6,9 +6,12 @@ import { processVideo } from '@/lib/processing/video';
 import { processAudio } from '@/lib/processing/audio';
 import { v4 as uuidv4 } from 'uuid';
 
-// Ensure upload directory exists
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
-const PROCESSED_DIR = path.join(process.cwd(), 'public', 'processed');
+import os from 'os';
+
+// Use temporary directory for Vercel compatibility
+const TEMP_DIR = os.tmpdir();
+const UPLOAD_DIR = path.join(TEMP_DIR, 'compressor-uploads');
+const PROCESSED_DIR = path.join(TEMP_DIR, 'compressor-processed');
 
 async function ensureDirs() {
     await fs.mkdir(UPLOAD_DIR, { recursive: true });
@@ -74,7 +77,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
             status: 'success',
-            compressed_file_url: `/processed/${outputFilename}`,
+            compressed_file_url: `/api/serve?file=${outputFilename}`,
             metadata: {
                 original_size: originalStats.size,
                 compressed_size: processedStats.size,
