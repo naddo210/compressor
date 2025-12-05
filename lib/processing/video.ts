@@ -34,14 +34,14 @@ export function processVideo(
         if (options.crf) {
             command = command.addOption('-crf', options.crf.toString());
         } else {
-            command = command.addOption('-crf', '23'); // Default balanced
+            command = command.addOption('-crf', '28'); // Optimized for size (default was 23)
         }
 
         // Set Preset
         if (options.preset) {
             command = command.addOption('-preset', options.preset);
         } else {
-            command = command.addOption('-preset', 'medium');
+            command = command.addOption('-preset', 'veryfast'); // Faster encoding, good for Vercel
         }
 
         // Set Resolution
