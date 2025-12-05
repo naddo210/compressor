@@ -1,10 +1,11 @@
 import ffmpeg from 'fluent-ffmpeg';
-import ffmpegPath from 'ffmpeg-static';
+import { getFfmpegPath } from '@/lib/ffmpeg';
 
+const ffmpegPath = getFfmpegPath();
 if (ffmpegPath) {
     ffmpeg.setFfmpegPath(ffmpegPath);
 } else {
-    console.warn('ffmpeg-static not found, relying on system ffmpeg');
+    console.warn('ffmpeg binary not found. Processing may fail.');
 }
 
 interface VideoProcessingOptions {
