@@ -15,13 +15,29 @@ export default function Home() {
   const [result, setResult] = useState<ProcessingResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const MAX_FILE_SIZE = 4.5 * 1024 * 1024; // 4.5MB Vercel limit
+  const MAX_FILE_SIZE = 200 * 1024 * 1024; // 200MB (Note: Vercel limit is still 4.5MB)
 
   const getFileType = (file: File): 'image' | 'video' | 'audio' => {
     if (file.type.startsWith('image/')) return 'image';
     if (file.type.startsWith('video/')) return 'video';
     if (file.type.startsWith('audio/')) return 'audio';
     return 'image'; // Default
+  };
+
+  const handleFileSelect = (file: File) => {
+    if (file.size > MAX_FILE_SIZE) {
+      setError(`File size exceeds the 200MB limit.`);
+      return;
+    }
+    setFile(file);
+    setError(null);
+    setResult(null);
+    
+    // Reset options based on file type
+    const type = getFileType(file);
+    setOptions({
+      [type]: {}
+    });
   };
 
   const handleProcess = async () => {
