@@ -1,10 +1,11 @@
 import ffmpeg from 'fluent-ffmpeg';
-import path from 'path';
-import os from 'os';
+import ffmpegPath from 'ffmpeg-static';
 
-// Resolve ffmpeg path manually to avoid bundling issues
-const ffmpegPath = path.join(process.cwd(), 'node_modules', 'ffmpeg-static', os.platform() === 'win32' ? 'ffmpeg.exe' : 'ffmpeg');
-ffmpeg.setFfmpegPath(ffmpegPath);
+if (ffmpegPath) {
+    ffmpeg.setFfmpegPath(ffmpegPath);
+} else {
+    console.warn('ffmpeg-static not found, relying on system ffmpeg');
+}
 
 interface VideoProcessingOptions {
     resolution?: '1080p' | '720p' | '480p';

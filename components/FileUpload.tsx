@@ -43,10 +43,10 @@ export default function FileUpload({ onFileSelect, selectedFile, onClear }: File
     <div className="w-full">
       {!selectedFile ? (
         <div
-          className={`border-2 border-dashed rounded-xl p-6 sm:p-10 text-center cursor-pointer transition-colors touch-manipulation ${
+          className={`border-3 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all duration-300 ease-in-out touch-manipulation transform ${
             isDragging
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50 active:bg-gray-100'
+              ? 'border-blue-500 bg-blue-50/50 scale-[1.02] shadow-lg'
+              : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50/50 hover:shadow-md active:scale-[0.98]'
           }`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}

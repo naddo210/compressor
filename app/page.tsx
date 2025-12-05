@@ -67,20 +67,20 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Media<span className="text-blue-600">Compressor</span>
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 sm:text-5xl sm:tracking-tight lg:text-6xl drop-shadow-sm">
+            Media<span className="text-gray-900">Compressor</span>
           </h1>
-          <p className="mt-3 sm:mt-5 max-w-xl mx-auto text-lg sm:text-xl text-gray-500">
-            Compress and enhance your images, videos, and audio files with AI-powered technology.
+          <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 font-medium">
+            Professional-grade compression and enhancement for your media files.
           </p>
         </div>
 
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden">
-          <div className="p-4 sm:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+          <div className="p-6 sm:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
               {/* Left Column: Upload & Options */}
               <div className="space-y-8">
                 <div>
