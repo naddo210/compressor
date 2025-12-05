@@ -11,6 +11,8 @@ export interface ProcessingOptions {
     audio?: {
         bitrate?: string;
         normalize?: boolean;
+        denoise?: boolean;
+        enhanceSpeech?: boolean;
     };
     [key: string]: any; // Allow dynamic access for now, or refine
 }

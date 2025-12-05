@@ -67,20 +67,20 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-gray-50 py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
             Media<span className="text-blue-600">Compressor</span>
           </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+          <p className="mt-3 sm:mt-5 max-w-xl mx-auto text-lg sm:text-xl text-gray-500">
             Compress and enhance your images, videos, and audio files with AI-powered technology.
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden">
+          <div className="p-4 sm:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {/* Left Column: Upload & Options */}
               <div className="space-y-8">
                 <div>
@@ -104,11 +104,11 @@ export default function Home() {
                     <button
                       onClick={handleProcess}
                       disabled={isProcessing}
-                      className={`mt-8 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${
+                      className={`mt-6 sm:mt-8 w-full flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border border-transparent text-base font-medium rounded-lg sm:rounded-md text-white ${
                         isProcessing
                           ? 'bg-blue-400 cursor-not-allowed'
-                          : 'bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10'
-                      } transition-colors duration-200`}
+                          : 'bg-blue-600 hover:bg-blue-700 md:text-lg'
+                      } transition-colors duration-200 shadow-sm active:scale-95 transform transition-transform`}
                     >
                       {isProcessing ? (
                         <>
@@ -167,21 +167,21 @@ export default function Home() {
                     </div>
 
                     <div className="rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
-                      {getFileType(file) === 'image' && (
+                      {file && getFileType(file) === 'image' && (
                         <img 
                           src={result.compressed_file_url} 
                           alt="Processed" 
                           className="w-full h-auto max-h-[300px] object-contain"
                         />
                       )}
-                      {getFileType(file) === 'video' && (
+                      {file && getFileType(file) === 'video' && (
                         <video 
                           src={result.compressed_file_url} 
                           controls 
                           className="w-full h-auto max-h-[300px]"
                         />
                       )}
-                      {getFileType(file) === 'audio' && (
+                      {file && getFileType(file) === 'audio' && (
                         <div className="p-4 flex justify-center">
                           <audio 
                             src={result.compressed_file_url} 

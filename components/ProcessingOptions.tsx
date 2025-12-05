@@ -2,14 +2,16 @@
 
 import React from 'react';
 
+import type { ProcessingOptions } from '@/lib/types';
+
 interface ProcessingOptionsProps {
   fileType: 'image' | 'video' | 'audio';
-  options: any;
-  onChange: (options: any) => void;
+  options: ProcessingOptions;
+  onChange: (options: ProcessingOptions) => void;
 }
 
 export default function ProcessingOptions({ fileType, options, onChange }: ProcessingOptionsProps) {
-  const handleChange = (section: string, key: string, value: any) => {
+  const handleChange = (section: keyof ProcessingOptions, key: string, value: any) => {
     onChange({
       ...options,
       [section]: {
@@ -20,20 +22,20 @@ export default function ProcessingOptions({ fileType, options, onChange }: Proce
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sm:space-y-6">
       <h3 className="text-lg font-semibold text-gray-900">Processing Options</h3>
       
       {fileType === 'image' && (
-        <div className="space-y-4">
+        <div className="space-y-5 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Quality</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2 sm:mb-1">Quality</label>
             <input
               type="range"
               min="1"
               max="100"
               value={options.image?.quality || 80}
               onChange={(e) => handleChange('image', 'quality', parseInt(e.target.value))}
-              className="w-full"
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>Low</span>
@@ -42,23 +44,23 @@ export default function ProcessingOptions({ fileType, options, onChange }: Proce
             </div>
           </div>
           
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3 py-1">
             <input
               type="checkbox"
               id="upscale"
               checked={options.image?.upscale || false}
               onChange={(e) => handleChange('image', 'upscale', e.target.checked)}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
-            <label htmlFor="upscale" className="text-sm text-gray-700">Upscale (2x)</label>
+            <label htmlFor="upscale" className="text-base sm:text-sm text-gray-700">Upscale (2x)</label>
           </div>
 
            <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Format</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2 sm:mb-1">Format</label>
             <select
               value={options.image?.format || 'jpeg'}
               onChange={(e) => handleChange('image', 'format', e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2.5 sm:py-2 text-base sm:text-sm"
             >
               <option value="jpeg">JPEG</option>
               <option value="png">PNG</option>
